@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Compost.FileSystem;
+using System.IO;
 
 namespace Compost.Tests.FileSystem
 {
@@ -17,6 +18,12 @@ namespace Compost.Tests.FileSystem
         public void Setup()
         {
             ioWrapper = new IOWrapper();
+        }
+
+        [Test]
+        public void combine()
+        {
+            Assert.AreEqual(Path.Combine("a", "b", "c", "d"), ioWrapper.Combine("a", "b", "c", "d"));
         }
     }
 }

@@ -21,5 +21,13 @@ namespace Compost.Tests.FileSystem
 
             IO.Wrapper = ioWrapper;
         }
+
+        [Test]
+        public void combine()
+        {
+            IO.Combine("a", "b", "c");
+
+            ioWrapper.AssertWasCalled(i => i.Combine("a", "b", "c"));
+        }
     }
 }
