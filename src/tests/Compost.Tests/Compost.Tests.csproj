@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertThat.cs" />
+    <Compile Include="FileSystem\IOTests.cs" />
+    <Compile Include="FileSystem\IOWrapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectorTests.cs" />
   </ItemGroup>
@@ -53,13 +55,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Compost\Compost.csproj">
-      <Project>{24558327-8CFC-4346-89E9-40B27015D4BC}</Project>
-      <Name>Compost</Name>
-    </ProjectReference>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\..\Compost\Compost.csproj">
+      <Project>{c194a521-bbc1-4d2a-bc71-7e6487a21a58}</Project>
+      <Name>Compost</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
