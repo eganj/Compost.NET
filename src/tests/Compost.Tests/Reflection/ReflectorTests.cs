@@ -8,60 +8,62 @@ namespace Compost.Tests.Reflection
         [TestFixture]
         public class WithInstance
         {
-            private static readonly TestClassAlpha testClass = new TestClassAlpha();
+            private const string FOO = "asdf";
+
+            private static readonly TestClassAlpha TestClass = new TestClassAlpha();
+
+            [Test]
+            public void member_info_returns_info_for_fields_and_properties()
+            {
+                Assert.That(Reflector.MemberInfo(() => TestClass.SomeField).Name, Is.EqualTo("SomeField"));
+                Assert.That(Reflector.MemberInfo(() => TestClass.SomeProperty).Name, Is.EqualTo("SomeProperty"));
+            }
 
             [Test]
             public void member_info_throws_if_not_a_member()
             {
                 AssertThat.ExceptionIsThrown<NotAMemberException>(
-                    () => Reflector.MemberInfo(() => testClass.ReturnSomething()));
+                    () => Reflector.MemberInfo(() => TestClass.ReturnSomething()));
             }
 
             [Test]
-            public void member_info_returns_info_for_fields_and_properties()
+            public void member_info_throws_if_given_a_constant()
             {
-                Assert.That(Reflector.MemberInfo(() => testClass.SomeField).Name, Is.EqualTo("SomeField"));
-                Assert.That(Reflector.MemberInfo(() => testClass.SomeProperty).Name, Is.EqualTo("SomeProperty"));
-            }
-
-            [Test]
-            public void method_info_throws_if_not_a_method()
-            {
-                AssertThat.ExceptionIsThrown<NotAMethodException>(() => Reflector.MethodInfo(() => testClass.SomeField));
-            }
-
-            [Test]
-            public void method_info_returns_info_for_method()
-            {
-                Assert.That(Reflector.MethodInfo(() => testClass.ReturnSomething()).Name, Is.EqualTo("ReturnSomething"));
-                Assert.That(Reflector.MethodInfo(() => testClass.DoSomething()).Name, Is.EqualTo("DoSomething"));
+                AssertThat.ExceptionIsThrown<NotAMemberException>(
+                    () => Reflector.MemberInfo(() => FOO));
             }
 
             [Test]
             public void member_name_returns_name()
             {
-                Assert.That(Reflector.MemberName(() => testClass.SomeField), Is.EqualTo("SomeField"));
-                Assert.That(Reflector.MemberName(() => testClass.SomeProperty), Is.EqualTo("SomeProperty"));
+                Assert.That(Reflector.MemberName(() => TestClass.SomeField), Is.EqualTo("SomeField"));
+                Assert.That(Reflector.MemberName(() => TestClass.SomeProperty), Is.EqualTo("SomeProperty"));
+            }
+
+            [Test]
+            public void method_info_returns_info_for_method()
+            {
+                Assert.That(Reflector.MethodInfo(() => TestClass.ReturnSomething()).Name, Is.EqualTo("ReturnSomething"));
+                Assert.That(Reflector.MethodInfo(() => TestClass.DoSomething()).Name, Is.EqualTo("DoSomething"));
+            }
+
+            [Test]
+            public void method_info_throws_if_not_a_method()
+            {
+                AssertThat.ExceptionIsThrown<NotAMethodException>(() => Reflector.MethodInfo(() => TestClass.SomeField));
             }
 
             [Test]
             public void method_name_returns_name()
             {
-                Assert.That(Reflector.MethodName(() => testClass.ReturnSomething()), Is.EqualTo("ReturnSomething"));
-                Assert.That(Reflector.MethodName(() => testClass.DoSomething()), Is.EqualTo("DoSomething"));
+                Assert.That(Reflector.MethodName(() => TestClass.ReturnSomething()), Is.EqualTo("ReturnSomething"));
+                Assert.That(Reflector.MethodName(() => TestClass.DoSomething()), Is.EqualTo("DoSomething"));
             }
         }
 
         [TestFixture]
         public class WithoutInstance
         {
-            [Test]
-            public void member_info_throws_if_not_a_member()
-            {
-                AssertThat.ExceptionIsThrown<NotAMemberException>(
-                    () => Reflector.MemberInfo((TestClassAlpha testClass) => testClass.ReturnSomething()));
-            }
-
             [Test]
             public void member_info_returns_info_for_fields_and_properties()
             {
@@ -72,10 +74,19 @@ namespace Compost.Tests.Reflection
             }
 
             [Test]
-            public void method_info_throws_if_not_a_method()
+            public void member_info_throws_if_not_a_member()
             {
-                AssertThat.ExceptionIsThrown<NotAMethodException>(
-                    () => Reflector.MethodInfo((TestClassAlpha testClass) => testClass.SomeField));
+                AssertThat.ExceptionIsThrown<NotAMemberException>(
+                    () => Reflector.MemberInfo((TestClassAlpha testClass) => testClass.ReturnSomething()));
+            }
+
+            [Test]
+            public void member_name_returns_name()
+            {
+                Assert.That(Reflector.MemberName((TestClassAlpha testClass) => testClass.SomeField),
+                    Is.EqualTo("SomeField"));
+                Assert.That(Reflector.MemberName((TestClassAlpha testClass) => testClass.SomeProperty),
+                    Is.EqualTo("SomeProperty"));
             }
 
             [Test]
@@ -88,12 +99,10 @@ namespace Compost.Tests.Reflection
             }
 
             [Test]
-            public void member_name_returns_name()
+            public void method_info_throws_if_not_a_method()
             {
-                Assert.That(Reflector.MemberName((TestClassAlpha testClass) => testClass.SomeField),
-                    Is.EqualTo("SomeField"));
-                Assert.That(Reflector.MemberName((TestClassAlpha testClass) => testClass.SomeProperty),
-                    Is.EqualTo("SomeProperty"));
+                AssertThat.ExceptionIsThrown<NotAMethodException>(
+                    () => Reflector.MethodInfo((TestClassAlpha testClass) => testClass.SomeField));
             }
 
             [Test]
@@ -110,10 +119,7 @@ namespace Compost.Tests.Reflection
         {
             public int SomeField;
             public string SomeProperty { get; set; }
-
-            public void DoSomething()
-            {
-            }
+            public void DoSomething() {}
 
             public double ReturnSomething()
             {

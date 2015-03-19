@@ -72,6 +72,13 @@ namespace Compost.Reflection
             if (memberExpression != null)
                 return memberExpression.Member;
 
+            var constantExpression = expression.Body as ConstantExpression;
+            if (constantExpression != null)
+                throw new NotAMemberException(
+                    "The supplied expression uses a constant. " +
+                    "Member information cannot be retrieved from a constant expression. " +
+                    "Expression: " + expression);
+
             throw new NotAMemberException(expression.ToString());
         }
 
@@ -87,31 +94,19 @@ namespace Compost.Reflection
 
     public class NotAMemberException : Exception
     {
-        public NotAMemberException()
-        {
-        }
+        public NotAMemberException() {}
 
-        public NotAMemberException(string message) : base(message)
-        {
-        }
+        public NotAMemberException(string message) : base(message) {}
 
-        public NotAMemberException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public NotAMemberException(string message, Exception innerException) : base(message, innerException) {}
     }
 
     public class NotAMethodException : Exception
     {
-        public NotAMethodException()
-        {
-        }
+        public NotAMethodException() {}
 
-        public NotAMethodException(string message) : base(message)
-        {
-        }
+        public NotAMethodException(string message) : base(message) {}
 
-        public NotAMethodException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public NotAMethodException(string message, Exception innerException) : base(message, innerException) {}
     }
 }
