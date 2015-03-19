@@ -72,6 +72,14 @@ namespace Compost.Reflection
             if (memberExpression != null)
                 return memberExpression.Member;
 
+            var unaryExpression = expression.Body as UnaryExpression;
+            if (unaryExpression != null)
+            {
+                memberExpression = unaryExpression.Operand as MemberExpression;
+                if (memberExpression != null)
+                    return memberExpression.Member;
+            }
+
             var constantExpression = expression.Body as ConstantExpression;
             if (constantExpression != null)
                 throw new NotAMemberException(

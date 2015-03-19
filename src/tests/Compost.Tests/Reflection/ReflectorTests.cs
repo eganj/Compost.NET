@@ -34,6 +34,14 @@ namespace Compost.Tests.Reflection
             }
 
             [Test]
+            public void member_info_returns_info_for_unary_expressions()
+            {
+                int d = 0;
+
+                Assert.That(Reflector.MemberInfo(() => -d).Name, Is.EqualTo("d"));
+            }
+
+            [Test]
             public void member_name_returns_name()
             {
                 Assert.That(Reflector.MemberName(() => TestClass.SomeField), Is.EqualTo("SomeField"));
