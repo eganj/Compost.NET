@@ -148,5 +148,37 @@ namespace Compost.Tests.Contracts
             AssertThat.ExceptionIsThrown<ArgumentException>(
                 () => Argument.CannotBeNullOrEmpty(EmptyCollection, Reflector.MemberName(() => EmptyCollection)));
         }
+
+        [Test]
+        public void meets_criteria_does_not_throw_if_expression_returns_true()
+        {
+            Argument.MeetsCriteria(() => true);
+            Argument.MeetsCriteria(() => 8 > 2);
+
+            Assert.Pass("Exception was not thrown.");
+        }
+
+        [Test]
+        public void meets_criteria_throws_if_expression_returns_false()
+        {
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.MeetsCriteria(() => false));
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.MeetsCriteria(() => 2 > 9));
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.MeetsCriteria(() => NullCollection != null));
+        }
+
+        [Test]
+        public void meets_criteria_does_not_throw_if_expression_returns_true_2()
+        {
+            Argument.MeetsCriteria(() => ValidCollection.Length > 0, Reflector.MemberName(() => ValidCollection));
+
+            Assert.Pass("Exception was not thrown.");
+        }
+
+        [Test]
+        public void meets_criteria_throws_if_expression_returns_false_2()
+        {
+            AssertThat.ExceptionIsThrown<ArgumentException>(
+                () => Argument.MeetsCriteria(() => NullCollection != null, Reflector.MemberName(() => NullCollection)));
+        }
     }
 }

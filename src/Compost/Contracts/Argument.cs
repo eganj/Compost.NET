@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Compost.Contracts
 {
@@ -122,6 +123,33 @@ namespace Compost.Contracts
             CannotBeNull(arg, argumentName);
             if (arg.Count == 0)
                 throw new ArgumentException("Argument cannot be empty!", argumentName);
+        }
+
+        /// <summary>
+        ///     Ensures that the argument meets the specified criteria. If the argument does not meet the criteria, an
+        ///     <seealso cref="ArgumentException" /> is thrown.
+        /// </summary>
+        /// <param name="argExpression"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void MeetsCriteria(Expression<Func<bool>> argExpression)
+        {
+            var f = argExpression.Compile();
+            if (!f())
+                throw new ArgumentException("Argument did not meet criteria: " + argExpression);
+        }
+
+        /// <summary>
+        ///     Ensures that the argument meets the specified criteria. If the argument does not meet the criteria, an
+        ///     <seealso cref="ArgumentException" /> is thrown.
+        /// </summary>
+        /// <param name="argExpression"></param>
+        /// <param name="argumentName"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void MeetsCriteria(Expression<Func<bool>> argExpression, string argumentName)
+        {
+            var f = argExpression.Compile();
+            if (!f())
+                throw new ArgumentException("Argument did not meet criteria: " + argExpression, argumentName);
         }
     }
 }
