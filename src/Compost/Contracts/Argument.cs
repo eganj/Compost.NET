@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Compost.Contracts
 {
@@ -90,6 +91,37 @@ namespace Compost.Contracts
             CannotBeNull(arg, argumentName);
             if (string.IsNullOrWhiteSpace(arg))
                 throw new ArgumentException("Argument cannot be empty or white space!");
+        }
+
+        /// <summary>
+        ///     Ensures that the argument is not null or empty. If the argument is null, an
+        ///     <seealso cref="ArgumentNullException" /> is thrown. If the argument is empty, an
+        ///     <seealso cref="ArgumentException" /> is thrown.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <exception cref="ArgumentException"></exception>
+        public static void CannotBeNullOrEmpty<T>(ICollection<T> arg)
+        {
+            CannotBeNull(arg);
+            if (arg.Count == 0)
+                throw new ArgumentException("Argument cannot be empty!");
+        }
+
+        /// <summary>
+        ///     Ensures that the argument is not null or empty. If the argument is null, an
+        ///     <seealso cref="ArgumentNullException" /> is thrown. If the argument is empty, an
+        ///     <seealso cref="ArgumentException" /> is thrown.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="argumentName"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <exception cref="ArgumentException"></exception>
+        public static void CannotBeNullOrEmpty<T>(ICollection<T> arg, string argumentName)
+        {
+            CannotBeNull(arg, argumentName);
+            if (arg.Count == 0)
+                throw new ArgumentException("Argument cannot be empty!", argumentName);
         }
     }
 }

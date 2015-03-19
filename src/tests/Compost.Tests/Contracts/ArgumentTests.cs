@@ -13,6 +13,10 @@ namespace Compost.Tests.Contracts
         private static readonly string ValidString = "asdf";
         private static readonly string WhitespaceString = " ";
         private static readonly string EmptyString = "";
+
+        private static readonly int[] ValidCollection = {0, 1, 2, 3};
+        private static readonly int[] NullCollection = null;
+        private static readonly int[] EmptyCollection = {};
         // ReSharper restore ConvertToConstant.Local
 
         [Test]
@@ -42,7 +46,6 @@ namespace Compost.Tests.Contracts
         {
             AssertThat.ExceptionIsThrown<ArgumentNullException>(
                 () => Argument.CannotBeNull(NullString, Reflector.MemberName(() => NullString)));
-
         }
 
         [Test]
@@ -73,8 +76,10 @@ namespace Compost.Tests.Contracts
         [Test]
         public void cannot_be_null_or_empty_throws_if_argument_is_null_or_empty_2()
         {
-            AssertThat.ExceptionIsThrown<ArgumentNullException>(() => Argument.CannotBeNullOrEmpty(NullString, Reflector.MemberName(() => NullString)));
-            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrEmpty(EmptyString, Reflector.MemberName(() => EmptyString)));
+            AssertThat.ExceptionIsThrown<ArgumentNullException>(
+                () => Argument.CannotBeNullOrEmpty(NullString, Reflector.MemberName(() => NullString)));
+            AssertThat.ExceptionIsThrown<ArgumentException>(
+                () => Argument.CannotBeNullOrEmpty(EmptyString, Reflector.MemberName(() => EmptyString)));
         }
 
         [Test]
@@ -104,10 +109,44 @@ namespace Compost.Tests.Contracts
         [Test]
         public void cannot_be_null_or_whitespace_throws_if_argument_is_null_or_whitespace_2()
         {
-            AssertThat.ExceptionIsThrown<ArgumentNullException>(() => Argument.CannotBeNullOrWhiteSpace(NullString, Reflector.MemberName(() => NullString)));
-            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrWhiteSpace(EmptyString, Reflector.MemberName(() => EmptyString)));
-            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrWhiteSpace(WhitespaceString, Reflector.MemberName(() => WhitespaceString)));
+            AssertThat.ExceptionIsThrown<ArgumentNullException>(
+                () => Argument.CannotBeNullOrWhiteSpace(NullString, Reflector.MemberName(() => NullString)));
+            AssertThat.ExceptionIsThrown<ArgumentException>(
+                () => Argument.CannotBeNullOrWhiteSpace(EmptyString, Reflector.MemberName(() => EmptyString)));
+            AssertThat.ExceptionIsThrown<ArgumentException>(
+                () => Argument.CannotBeNullOrWhiteSpace(WhitespaceString, Reflector.MemberName(() => WhitespaceString)));
         }
 
+        [Test]
+        public void cannot_be_null_or_empty_does_not_throw_for_valid_collections()
+        {
+            Argument.CannotBeNullOrEmpty(ValidCollection);
+
+            Assert.Pass("Exception was not thrown.");
+        }
+
+        [Test]
+        public void cannot_be_null_or_empty_throws_for_null_or_empty_collections()
+        {
+            AssertThat.ExceptionIsThrown<ArgumentNullException>(() => Argument.CannotBeNullOrEmpty(NullCollection));
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrEmpty(EmptyCollection));
+        }
+
+        [Test]
+        public void cannot_be_null_or_empty_does_not_throw_for_valid_collections_2()
+        {
+            Argument.CannotBeNullOrEmpty(ValidCollection, Reflector.MemberName(() => ValidCollection));
+
+            Assert.Pass("Exception was not thrown.");
+        }
+
+        [Test]
+        public void cannot_be_null_or_empty_throws_for_null_or_empty_collections_2()
+        {
+            AssertThat.ExceptionIsThrown<ArgumentNullException>(
+                () => Argument.CannotBeNullOrEmpty(NullCollection, Reflector.MemberName(() => NullCollection)));
+            AssertThat.ExceptionIsThrown<ArgumentException>(
+                () => Argument.CannotBeNullOrEmpty(EmptyCollection, Reflector.MemberName(() => EmptyCollection)));
+        }
     }
 }
