@@ -77,5 +77,37 @@ namespace Compost.Tests.Contracts
             AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrEmpty(EmptyString, Reflector.MemberName(() => EmptyString)));
         }
 
+        [Test]
+        public void cannot_be_null_or_whitespace_does_not_throw_if_input_is_valid()
+        {
+            Argument.CannotBeNullOrWhiteSpace(ValidString);
+
+            Assert.Pass("Exception was not thrown.");
+        }
+
+        [Test]
+        public void cannot_be_null_or_whitespace_throws_if_argument_is_null_or_whitespace()
+        {
+            AssertThat.ExceptionIsThrown<ArgumentNullException>(() => Argument.CannotBeNullOrWhiteSpace(NullString));
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrWhiteSpace(EmptyString));
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrWhiteSpace(WhitespaceString));
+        }
+
+        [Test]
+        public void cannot_be_null_or_whitespace_does_not_throw_if_input_is_valid_2()
+        {
+            Argument.CannotBeNullOrWhiteSpace(ValidString, Reflector.MemberName(() => ValidString));
+
+            Assert.Pass("Exception was not thrown.");
+        }
+
+        [Test]
+        public void cannot_be_null_or_whitespace_throws_if_argument_is_null_or_whitespace_2()
+        {
+            AssertThat.ExceptionIsThrown<ArgumentNullException>(() => Argument.CannotBeNullOrWhiteSpace(NullString, Reflector.MemberName(() => NullString)));
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrWhiteSpace(EmptyString, Reflector.MemberName(() => EmptyString)));
+            AssertThat.ExceptionIsThrown<ArgumentException>(() => Argument.CannotBeNullOrWhiteSpace(WhitespaceString, Reflector.MemberName(() => WhitespaceString)));
+        }
+
     }
 }
