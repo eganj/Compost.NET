@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using System.IO;
 using Compost.FileSystem;
-using System.IO;
+using NUnit.Framework;
 
 namespace Compost.Tests.FileSystem
 {

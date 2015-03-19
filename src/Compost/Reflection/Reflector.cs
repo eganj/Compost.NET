@@ -83,20 +83,35 @@ namespace Compost.Reflection
 
             throw new NotAMethodException(expression.ToString());
         }
-
     }
 
     public class NotAMemberException : Exception
     {
-        public NotAMemberException() : base() { }
-        public NotAMemberException(string message) : base(message) { }
-        public NotAMemberException(string message, Exception innerException) : base(message, innerException) { }
+        public NotAMemberException()
+        {
+        }
+
+        public NotAMemberException(string message) : base(message)
+        {
+        }
+
+        public NotAMemberException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 
     public class NotAMethodException : Exception
     {
-          public NotAMethodException() : base() { }
-          public NotAMethodException(string message) : base(message) { }
-          public NotAMethodException(string message, Exception innerException) : base(message, innerException) { }
+        public NotAMethodException()
+        {
+        }
+
+        public NotAMethodException(string message) : base(message)
+        {
+        }
+
+        public NotAMethodException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

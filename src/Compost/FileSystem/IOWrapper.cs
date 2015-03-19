@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 
 namespace Compost.FileSystem
 {
     /// <summary>
-    ///     Provides an interface for <seealso cref="System.IO"/> methods that can be mocked and tested.
+    ///     Provides an interface for <seealso cref="System.IO" /> methods that can be mocked and tested.
     /// </summary>
     public interface IIOWrapper
     {
         /// <summary>
-        ///     Wrapper for the <seealso cref="System.IO.Path.Combine(string[])"/> method.
+        ///     Wrapper for the <seealso cref="System.IO.Path.Combine(string[])" /> method.
         /// </summary>
         /// <param name="paths"></param>
         /// <returns></returns>
@@ -20,12 +16,12 @@ namespace Compost.FileSystem
     }
 
     /// <summary>
-    ///     A wrapper for <seealso cref="System.IO"/> methods.
+    ///     A wrapper for <seealso cref="System.IO" /> methods.
     /// </summary>
     public class IOWrapper : IIOWrapper
     {
         /// <summary>
-        ///     Wrapper for the <seealso cref="System.IO.Path.Combine(string[])"/> method.
+        ///     Wrapper for the <seealso cref="System.IO.Path.Combine(string[])" /> method.
         /// </summary>
         /// <param name="paths"></param>
         /// <returns></returns>
