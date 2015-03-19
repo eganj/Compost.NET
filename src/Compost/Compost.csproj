@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Argument.cs" />
     <Compile Include="FileSystem\IO.cs" />
     <Compile Include="FileSystem\IOWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
