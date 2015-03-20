@@ -151,5 +151,30 @@ namespace Compost.Contracts
             if (!f())
                 throw new ArgumentException("Argument did not meet criteria: " + argExpression, argumentName);
         }
+
+        /// <summary>
+        ///     Ensures that the argument meets the specified criteria. If the argument does not meet the criteria, an
+        ///     <seealso cref="ArgumentException" /> is thrown.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void MeetsCriteria(bool criteria)
+        {
+            if (!criteria)
+                throw new ArgumentException("Argument did not meet criteria.");
+        }
+
+        /// <summary>
+        ///     Ensures that the argument meets the specified criteria. If the argument does not meet the criteria, an
+        ///     <seealso cref="ArgumentException" /> is thrown.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <param name="argumentName"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void MeetsCriteria(bool criteria, string argumentName)
+        {
+            if (!criteria)
+                throw new ArgumentException("Argument did not meet criteria.", argumentName);
+        }
     }
 }
