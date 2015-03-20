@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AssertThat.cs" />
     <Compile Include="Contracts\ArgumentTests.cs" />
+    <Compile Include="Contracts\EnsureTests.cs" />
     <Compile Include="FileSystem\IOTests.cs" />
     <Compile Include="FileSystem\IOWrapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

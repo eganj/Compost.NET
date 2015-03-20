@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Argument.cs" />
+    <Compile Include="Contracts\Ensure.cs" />
+    <Compile Include="Contracts\EnsureException.cs" />
     <Compile Include="FileSystem\IO.cs" />
     <Compile Include="FileSystem\IOWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
