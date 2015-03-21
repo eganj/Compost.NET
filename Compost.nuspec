@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/eganj/Compost.NET/blob/master/License.txt</licenseUrl>
+    <projectUrl>https://github.com/eganj/Compost.NET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>https://github.com/eganj/Compost.NET/blob/master/ReleaseNotes.md</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>util utilities contract io file path reflection</tags>
+    <dependencies>
+      
+    </dependencies>
+  </metadata>
+</package>
