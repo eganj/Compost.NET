@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compost.Tests", "src\tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compost", "src\Compost\Compost.csproj", "{C194A521-BBC1-4D2A-BC71-7E6487A21A58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compost.Contracts", "src\Compost\Compost.Contracts.csproj", "{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{C194A521-BBC1-4D2A-BC71-7E6487A21A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C194A521-BBC1-4D2A-BC71-7E6487A21A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C194A521-BBC1-4D2A-BC71-7E6487A21A58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
