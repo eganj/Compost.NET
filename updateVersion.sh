@@ -1,1 +1,0 @@
-GitVersion /updateassemblyinfo true
