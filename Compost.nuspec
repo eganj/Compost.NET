@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/eganj/Compost.NET</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>https://github.com/eganj/Compost.NET/blob/master/ReleaseNotes.md</releaseNotes>
+    <releaseNotes>https://github.com/eganj/Compost.NET/blob/master/CHANGELOG.md</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>util utilities contract io file path reflection</tags>
     <dependencies>
