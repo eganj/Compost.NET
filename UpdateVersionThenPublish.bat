@@ -8,7 +8,7 @@ set msBuildDir=%WINDIR%\Microsoft.NET\Framework\v4.0.30319
 call %msBuildDir%\MSBuild.exe  Compost.NET.sln /p:Configuration=Release 
 
 :: Generate the changelog
-:: gulp step consumes version.json and creates release_version.txt
+:: changelog step consumes version.json and creates release_version.txt
 gulp changelog
 
 :: Publish to GitHub releases
