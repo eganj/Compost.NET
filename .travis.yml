@@ -8,7 +8,3 @@ before_script:
 script:
     - xbuild /p:Configuration=Release Compost.NET.sln
     - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./bin/tests/Release/Compost.Tests.dll
-after_success:
-    - nuget setApiKey $NUGET_API_KEY
-    - nuget pack ./src/Compost/Compost.csproj -Prop Configuration=Release
-    - nuget push ./Compost.nupkg
