@@ -1,1 +1,1 @@
-GetVersion /updateassemblyinfo true
+GitVersion /updateassemblyinfo true
