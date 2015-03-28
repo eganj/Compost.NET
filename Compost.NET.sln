@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compost.Contracts", "src\Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5210156C-862E-4144-9A10-BBF7D9B497D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compost.Caliburn.Tests", "src\tests\Compost.Caliburn.Tests\Compost.Caliburn.Tests.csproj", "{1E23B266-B6BB-4E2D-90D8-A017DEF46E28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compost.Caliburn", "src\Compost.Caliburn\Compost.Caliburn.csproj", "{763000CC-25BA-44C2-943A-31589B8BAFCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,11 +35,20 @@ Global
 		{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F6CE1E2-F928-4E90-A1EA-E39EE3B7E0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E23B266-B6BB-4E2D-90D8-A017DEF46E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E23B266-B6BB-4E2D-90D8-A017DEF46E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E23B266-B6BB-4E2D-90D8-A017DEF46E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E23B266-B6BB-4E2D-90D8-A017DEF46E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{763000CC-25BA-44C2-943A-31589B8BAFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{763000CC-25BA-44C2-943A-31589B8BAFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{763000CC-25BA-44C2-943A-31589B8BAFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{763000CC-25BA-44C2-943A-31589B8BAFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3AE5B845-CFD2-4A40-868C-28E062A229C3} = {0120A146-AB4E-4EC2-92AA-143EEF64AC78}
+		{1E23B266-B6BB-4E2D-90D8-A017DEF46E28} = {0120A146-AB4E-4EC2-92AA-143EEF64AC78}
 	EndGlobalSection
 EndGlobal
