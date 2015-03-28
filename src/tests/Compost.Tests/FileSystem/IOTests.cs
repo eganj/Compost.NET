@@ -1,20 +1,20 @@
 ﻿using Compost.FileSystem;
+using Moq;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace Compost.Tests.FileSystem
 {
     [TestFixture]
     public class IOTests
     {
-        private IIOWrapper ioWrapper;
+        private Mock<IIOWrapper> ioWrapper;
 
         [SetUp]
         public void Setup()
         {
-            ioWrapper = MockRepository.GenerateStub<IIOWrapper>();
+            ioWrapper = new Mock<IIOWrapper>();
 
-            IO.Wrapper = ioWrapper;
+            IO.Wrapper = ioWrapper.Object;
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace Compost.Tests.FileSystem
         {
             IO.Combine("a", "b", "c");
 
-            ioWrapper.AssertWasCalled(i => i.Combine("a", "b", "c"));
+            ioWrapper.Verify(i => i.Combine("a", "b", "c"));
         }
     }
 }
