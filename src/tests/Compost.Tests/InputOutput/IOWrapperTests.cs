@@ -20,21 +20,29 @@ namespace Compost.Tests.InputOutput
         [Test]
         public void combine()
         {
-            Assert.AreEqual(Path.Combine("a", "b", "c", "d"), ioWrapper.Combine("a", "b", "c", "d"));
+            Assert.AreEqual(@"a\b\c\d", Path.Combine("a", "b", "c", "d"));
+            Assert.AreEqual(@"a\b\c\d", ioWrapper.Combine("a", "b", "c", "d"));
         }
 
         [Test]
         public void extension()
         {
-            Assert.AreEqual(Path.GetExtension(TEST_FILE_PATH),
-                ioWrapper.GetFileExtension(TEST_FILE_PATH));
+            Assert.AreEqual(@".txt", Path.GetExtension(TEST_FILE_PATH));
+            Assert.AreEqual(@".txt", ioWrapper.GetFileExtension(TEST_FILE_PATH));
         }
 
         [Test]
-        public void ext()
+        public void file_name()
         {
-            Assert.AreEqual(Path.GetFileName(TEST_FILE_PATH),
-                ioWrapper.GetFileName(TEST_FILE_PATH));
+            Assert.AreEqual(@"test.txt", Path.GetFileName(TEST_FILE_PATH));
+            Assert.AreEqual(@"test.txt", ioWrapper.GetFileName(TEST_FILE_PATH));
+        }
+
+        [Test]
+        public void file_name_without_ext()
+        {
+            Assert.AreEqual("test", Path.GetFileNameWithoutExtension(TEST_FILE_PATH));
+            Assert.AreEqual("test", ioWrapper.GetFileNameWithoutExtension(TEST_FILE_PATH));
         }
     }
 }

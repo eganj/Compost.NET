@@ -29,6 +29,14 @@ namespace Compost.InputOutput
         /// <param name="filePath"></param>
         /// <returns></returns>
         string GetFileName(string filePath);
+
+        /// <summary>
+        ///     Wrapper for the <seealso cref="Path.GetFileNameWithoutExtension" /> method.
+        ///     Returns the file name without the extension from the <paramref name="filePath" />.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        string GetFileNameWithoutExtension(string filePath);
     }
 
     /// <summary>
@@ -67,6 +75,17 @@ namespace Compost.InputOutput
         public string GetFileName(string filePath)
         {
             return Path.GetFileName(filePath);
+        }
+
+        /// <summary>
+        ///     Wrapper for the <seealso cref="Path.GetFileNameWithoutExtension" /> method.
+        ///     Returns the file name without the extension from the <paramref name="filePath" />.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public string GetFileNameWithoutExtension(string filePath)
+        {
+            return Path.GetFileNameWithoutExtension(filePath);
         }
     }
 }
