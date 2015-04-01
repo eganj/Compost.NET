@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Compost.InputOutput;
 using NUnit.Framework;
 
@@ -50,6 +51,15 @@ namespace Compost.Tests.InputOutput
         {
             Assert.AreEqual("test", Path.GetFileNameWithoutExtension(TEST_FILE_PATH));
             Assert.AreEqual("test", ioWrapper.GetFileNameWithoutExtension(TEST_FILE_PATH));
+        }
+
+        [Test]
+        public void get_full_path()
+        {
+            var expected = Path.Combine(Environment.CurrentDirectory, @"test\file.txt");
+
+            Assert.AreEqual(expected, Path.GetFullPath(@"test\file.txt"));
+            Assert.AreEqual(expected, ioWrapper.GetFullPath(@"test\file.txt"));
         }
     }
 }
