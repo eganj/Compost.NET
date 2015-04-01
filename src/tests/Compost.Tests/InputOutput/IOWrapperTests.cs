@@ -66,19 +66,17 @@ namespace Compost.Tests.InputOutput
         public class With_io_operations
         {
             private const string TEST_DIRECTORY = @"C:\UnitTestDirectory";
-            private static readonly string TestFile = Path.Combine(TEST_DIRECTORY, "testing.txt");
-            private static readonly string[] Lines = {"asdf asdf", ";lkj ;lkj", "qwerpoiu"};
             private const string TEXT = "asdfdkjdkdfj";
+            private static readonly string TestFile = Path.Combine(TEST_DIRECTORY, "testing.txt");
+            private static readonly string DestFile = Path.Combine(TEST_DIRECTORY, "newFile.txt");
+            private static readonly string[] Lines = {"asdf asdf", ";lkj ;lkj", "qwerpoiu"};
 
             private IOWrapper ioWrapper;
 
             [SetUp]
             public void Setup()
             {
-                if (Directory.Exists(TEST_DIRECTORY))
-                    Directory.Delete(TEST_DIRECTORY, true);
-
-                Directory.CreateDirectory(TEST_DIRECTORY);
+                CreateCleanTestDirectory();
 
                 ioWrapper = new IOWrapper();
             }
@@ -86,8 +84,7 @@ namespace Compost.Tests.InputOutput
             [TearDown]
             public void TearDown()
             {
-                if (Directory.Exists(TEST_DIRECTORY))
-                    Directory.Delete(TEST_DIRECTORY, true);
+                DeleteTestDirectory();
             }
 
             [Test]
@@ -99,7 +96,7 @@ namespace Compost.Tests.InputOutput
             }
 
             [Test]
-            public void append_all_test()
+            public void append_all_text()
             {
                 ioWrapper.AppendAllText(TestFile, TEXT);
 
@@ -107,14 +104,125 @@ namespace Compost.Tests.InputOutput
             }
 
             [Test]
-            public void copy()
+            public void write_all_bytes()
             {
-                var dest = Path.Combine(TEST_DIRECTORY, "newFile.txt");
+                var bytes = new byte[] {1, 2, 3, 4, 5, 6};
+                ioWrapper.WriteAllBytes(TestFile, bytes);
 
-                ioWrapper.AppendAllLines(TestFile, Lines);
-                ioWrapper.Copy(TestFile, dest);
+                Assert.AreEqual(bytes, File.ReadAllBytes(TestFile));
+            }
 
-                Assert.IsTrue(File.Exists(dest));
+            [Test]
+            public void write_all_lines()
+            {
+                ioWrapper.WriteAllLines(TestFile, Lines);
+
+                Assert.AreEqual(Lines, File.ReadAllLines(TestFile));
+            }
+
+            [Test]
+            public void write_all_text()
+            {
+                ioWrapper.WriteAllText(TestFile, TEXT);
+
+                Assert.AreEqual(TEXT, File.ReadAllText(TestFile));
+            }
+
+            private static void CreateCleanTestDirectory()
+            {
+                DeleteTestDirectory();
+
+                Directory.CreateDirectory(TEST_DIRECTORY);
+            }
+
+            private static void DeleteTestDirectory()
+            {
+                if (Directory.Exists(TEST_DIRECTORY))
+                    Directory.Delete(TEST_DIRECTORY, true);
+            }
+
+            [TestFixture]
+            public class When_the_file_exists
+            {
+                private IOWrapper ioWrapper;
+
+                [SetUp]
+                public void Setup()
+                {
+                    CreateCleanTestDirectory();
+
+                    File.AppendAllText(TestFile, TEXT);
+
+                    ioWrapper = new IOWrapper();
+                }
+
+                [TearDown]
+                public void TearDown()
+                {
+                    DeleteTestDirectory();
+                }
+
+                [Test]
+                public void copy()
+                {
+                    ioWrapper.Copy(TestFile, DestFile);
+
+                    Assert.IsTrue(File.Exists(DestFile));
+                }
+
+                [Test]
+                public void delete()
+                {
+                    ioWrapper.Delete(TestFile);
+
+                    Assert.IsFalse(File.Exists(TestFile));
+                }
+
+                [Test]
+                public void delete_should_not_throw_if_file_does_not_exist()
+                {
+                    File.Delete(TestFile);
+                    Assert.IsFalse(File.Exists(TestFile));
+
+                    ioWrapper.Delete(TestFile);
+                }
+
+                [Test]
+                public void exists()
+                {
+                    Assert.IsTrue(ioWrapper.Exists(TestFile));
+
+                    File.Delete(TestFile);
+
+                    Assert.IsFalse(ioWrapper.Exists(TestFile));
+                }
+
+                [Test]
+                public void move()
+                {
+                    ioWrapper.Move(TestFile, DestFile);
+
+                    Assert.IsTrue(File.Exists(DestFile));
+                    Assert.IsFalse(File.Exists(TestFile));
+                }
+
+                [Test]
+                public void read_all_bytes()
+                {
+                    Assert.AreEqual(File.ReadAllBytes(TestFile), ioWrapper.ReadAllBytes(TestFile));
+                }
+
+                [Test]
+                public void read_all_lines()
+                {
+                    Assert.AreEqual(File.ReadAllLines(TestFile), ioWrapper.ReadAllLines(TestFile));
+                }
+
+                [Test]
+                public void read_all_text()
+                {
+                    Assert.AreEqual(TEXT, ioWrapper.ReadAllText(TestFile));
+                }
             }
         }
     }
