@@ -35,7 +35,7 @@ namespace Compost.Tests.InputOutput
         public void get_extension()
         {
             Assert.AreEqual(@".txt", Path.GetExtension(TEST_FILE_PATH));
-            Assert.AreEqual(@".txt", ioWrapper.GetFileExtension(TEST_FILE_PATH));
+            Assert.AreEqual(@".txt", ioWrapper.GetExtension(TEST_FILE_PATH));
         }
 
         [Test]

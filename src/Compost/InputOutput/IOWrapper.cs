@@ -30,7 +30,7 @@ namespace Compost.InputOutput
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        string GetFileExtension(string filePath);
+        string GetExtension(string filePath);
 
         /// <summary>
         ///     Wrapper for the <seealso cref="Path.GetFileName" /> method.
@@ -84,7 +84,7 @@ namespace Compost.InputOutput
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public string GetFileExtension(string filePath)
+        public string GetExtension(string filePath)
         {
             return Path.GetExtension(filePath);
         }
