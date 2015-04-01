@@ -48,8 +48,8 @@
     <Compile Include="AssertThat.cs" />
     <Compile Include="Contracts\ArgumentTests.cs" />
     <Compile Include="Contracts\EnsureTests.cs" />
-    <Compile Include="FileSystem\IOTests.cs" />
-    <Compile Include="FileSystem\IOWrapperTests.cs" />
+    <Compile Include="InputOutput\IOTests.cs" />
+    <Compile Include="InputOutput\IOWrapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectorTests.cs" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Compost.FileSystem
+namespace Compost.InputOutput
 {
     /// <summary>
     ///     Provides an interface for <seealso cref="System.IO" /> methods that can be mocked and tested.

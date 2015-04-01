@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using Compost.FileSystem;
+using Compost.InputOutput;
 using NUnit.Framework;
 
-namespace Compost.Tests.FileSystem
+namespace Compost.Tests.InputOutput
 {
     [TestFixture]
     public class IOWrapperTests

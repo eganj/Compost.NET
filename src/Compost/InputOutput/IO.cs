@@ -1,4 +1,4 @@
-﻿namespace Compost.FileSystem
+﻿namespace Compost.InputOutput
 {
     public static class IO
     {
