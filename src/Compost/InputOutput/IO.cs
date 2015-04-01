@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Compost.Reflection;
 
 namespace Compost.InputOutput
@@ -86,6 +88,130 @@ namespace Compost.InputOutput
         public static string GetFullPath(string path)
         {
             return Wrapper.GetFullPath(path);
+        }
+
+        /// <summary>
+        ///     Appends lines to a file. The file is created if it does not already exist.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="lines"></param>
+        public static void AppendAllLines(string filePath, IEnumerable<string> lines)
+        {
+            Wrapper.AppendAllLines(filePath, lines);
+        }
+
+        /// <summary>
+        ///     Appends text to a file. The file is created if it does not already exist.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="text"></param>
+        public static void AppendAllText(string filePath, string text)
+        {
+            Wrapper.AppendAllText(filePath, text);
+        }
+
+        /// <summary>
+        ///     Copies an existing file to a new file.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
+        /// <param name="overwrite"></param>
+        public static void Copy(string sourceFilePath, string destFilePath, bool overwrite = true)
+        {
+            Wrapper.Copy(sourceFilePath, destFilePath, overwrite);
+        }
+
+        /// <summary>
+        ///     Deletes the specified file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        public static void Delete(string filePath)
+        {
+            Wrapper.Delete(filePath);
+        }
+
+        /// <summary>
+        ///     Determines whether the specified file exists.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool Exists(string filePath)
+        {
+            return Wrapper.Exists(filePath);
+        }
+
+        /// <summary>
+        ///     Move a file to a new location.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
+        /// <param name="overwrite"></param>
+        public static void Move(string sourceFilePath, string destFilePath, bool overwrite = true)
+        {
+            Wrapper.Move(sourceFilePath, destFilePath, overwrite);
+        }
+
+        /// <summary>
+        ///     Reads the bytes from a file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static byte[] ReadAllBytes(string filePath)
+        {
+            return Wrapper.ReadAllBytes(filePath);
+        }
+
+        /// <summary>
+        ///     Reads all of the lines from a file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string[] ReadAllLines(string filePath)
+        {
+            return Wrapper.ReadAllLines(filePath);
+        }
+
+        /// <summary>
+        ///     Reads all of the text from a file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string ReadAllText(string filePath)
+        {
+            return Wrapper.ReadAllText(filePath);
+        }
+
+        /// <summary>
+        ///     Writes the bytes to the specified file. If the file does not exist, it will be created. If the file does exist, it
+        ///     will be overwritten.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="bytes"></param>
+        public static void WriteAllBytes(string filePath, IEnumerable<byte> bytes)
+        {
+            Wrapper.WriteAllBytes(filePath, bytes as byte[] ?? bytes.ToArray());
+        }
+
+        /// <summary>
+        ///     Writes the lines to the specified file. If the file does not exist, it will be created. If the file does exist, it
+        ///     will be overwritten.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="lines"></param>
+        public static void WriteAllLines(string filePath, IEnumerable<string> lines)
+        {
+            Wrapper.WriteAllLines(filePath, lines);
+        }
+
+        /// <summary>
+        ///     Writes the text to the specified file. If the file does not exist, it will be created. If the file does exist, it
+        ///     will be overwritten.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="text"></param>
+        public static void WriteAllText(string filePath, string text)
+        {
+            Wrapper.WriteAllText(filePath, text);
         }
     }
 }
