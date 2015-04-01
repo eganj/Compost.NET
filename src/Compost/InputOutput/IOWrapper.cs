@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Compost.InputOutput
 {
@@ -55,6 +56,28 @@ namespace Compost.InputOutput
         /// <param name="path"></param>
         /// <returns></returns>
         string GetFullPath(string path);
+
+        /// <summary>
+        ///     Appends lines to a file. The file is created if it does not already exist.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="lines"></param>
+        void AppendAllLines(string filePath, IEnumerable<string> lines);
+
+        /// <summary>
+        ///     Appends text to a file. The file is created if it does not already exist.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="lines"></param>
+        void AppendAllText(string filePath, string text);
+
+        /// <summary>
+        ///     Copies an existing file to a new file.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
+        /// <param name="overwrite"></param>
+        void Copy(string sourceFilePath, string destFilePath, bool overwrite = true);
     }
 
     /// <summary>
@@ -128,6 +151,37 @@ namespace Compost.InputOutput
         public string GetFullPath(string path)
         {
             return Path.GetFullPath(path);
+        }
+
+        /// <summary>
+        ///     Appends lines to a file. The file is created if it does not already exist.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="lines"></param>
+        public void AppendAllLines(string filePath, IEnumerable<string> lines)
+        {
+            File.AppendAllLines(filePath, lines);
+        }
+
+        /// <summary>
+        ///     Appends text to a file. The file is created if it does not already exist.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="lines"></param>
+        public void AppendAllText(string filePath, string text)
+        {
+            File.AppendAllText(filePath, text);
+        }
+
+        /// <summary>
+        ///     Copies an existing file to a new file.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
+        /// <param name="overwrite"></param>
+        public void Copy(string sourceFilePath, string destFilePath, bool overwrite = true)
+        {
+            File.Copy(sourceFilePath, destFilePath, overwrite);
         }
     }
 }
