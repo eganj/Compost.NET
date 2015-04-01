@@ -8,6 +8,7 @@ namespace Compost.Tests.InputOutput
     [TestFixture]
     public class IOTests
     {
+        // ReSharper disable InconsistentNaming
         private const string TestFile = "a";
         private static readonly string[] Lines = {TestFile, "b", "asdf"};
 

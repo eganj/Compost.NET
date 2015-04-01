@@ -8,6 +8,7 @@ namespace Compost.Tests.InputOutput
     [TestFixture]
     public class IOWrapperTests
     {
+        // ReSharper disable InconsistentNaming
         private const string TEST_FILE_PATH = @"C:\file\path\test.txt";
 
         private IOWrapper ioWrapper;
