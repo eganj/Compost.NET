@@ -25,21 +25,28 @@ namespace Compost.Tests.InputOutput
         }
 
         [Test]
-        public void extension()
+        public void get_directory_name()
+        {
+            Assert.AreEqual(@"C:\file\path", Path.GetDirectoryName(TEST_FILE_PATH));
+            Assert.AreEqual(@"C:\file\path", ioWrapper.GetDirectoryName(TEST_FILE_PATH));
+        }
+
+        [Test]
+        public void get_extension()
         {
             Assert.AreEqual(@".txt", Path.GetExtension(TEST_FILE_PATH));
             Assert.AreEqual(@".txt", ioWrapper.GetFileExtension(TEST_FILE_PATH));
         }
 
         [Test]
-        public void file_name()
+        public void get_file_name()
         {
             Assert.AreEqual(@"test.txt", Path.GetFileName(TEST_FILE_PATH));
             Assert.AreEqual(@"test.txt", ioWrapper.GetFileName(TEST_FILE_PATH));
         }
 
         [Test]
-        public void file_name_without_ext()
+        public void get_file_name_without_ext()
         {
             Assert.AreEqual("test", Path.GetFileNameWithoutExtension(TEST_FILE_PATH));
             Assert.AreEqual("test", ioWrapper.GetFileNameWithoutExtension(TEST_FILE_PATH));

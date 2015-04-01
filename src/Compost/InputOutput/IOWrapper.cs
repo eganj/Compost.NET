@@ -15,6 +15,16 @@ namespace Compost.InputOutput
         string Combine(params string[] paths);
 
         /// <summary>
+        ///     Wrapper for the <seealso cref="Path.GetDirectoryName" /> method.
+        ///     Returns the full path of the containing directory of the <paramref name="path" />.
+        ///     For example, "C:\some\file\path.txt" will return "C:\some\file" and
+        ///     "C:\some\dir" will return "C:\some"
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        string GetDirectoryName(string path);
+
+        /// <summary>
         ///     Wrapper for the <seealso cref="Path.GetExtension" /> method.
         ///     Returns the file extension of the <paramref name="filePath" />. (e.g. ".txt", ".jpg")
         /// </summary>
@@ -53,6 +63,19 @@ namespace Compost.InputOutput
         public string Combine(params string[] paths)
         {
             return Path.Combine(paths);
+        }
+
+        /// <summary>
+        ///     Wrapper for the <seealso cref="Path.GetDirectoryName" /> method.
+        ///     Returns the full path of the containing directory of the <paramref name="path" />.
+        ///     For example, "C:\some\file\path.txt" will return "C:\some\file" and
+        ///     "C:\some\dir" will return "C:\some"
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public string GetDirectoryName(string path)
+        {
+            return Path.GetDirectoryName(path);
         }
 
         /// <summary>
