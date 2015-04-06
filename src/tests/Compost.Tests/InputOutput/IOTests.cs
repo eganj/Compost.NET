@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Compost.InputOutput;
 using Moq;
 using NUnit.Framework;
@@ -10,6 +11,7 @@ namespace Compost.Tests.InputOutput
     {
         // ReSharper disable InconsistentNaming
         private const string TestFile = "a";
+        private const string TestDir = "asdf";
         private static readonly string[] Lines = {TestFile, "b", "asdf"};
 
         private Mock<IIOWrapper> ioWrapper;
@@ -130,25 +132,25 @@ namespace Compost.Tests.InputOutput
         [Test]
         public void delete()
         {
-            IO.Delete(TestFile);
+            IO.DeleteFile(TestFile);
 
-            ioWrapper.Verify(i => i.Delete(TestFile));
+            ioWrapper.Verify(i => i.DeleteFile(TestFile));
         }
 
         [Test]
         public void exists()
         {
-            IO.Exists(TestFile);
+            IO.FileExists(TestFile);
 
-            ioWrapper.Verify(i => i.Exists(TestFile));
+            ioWrapper.Verify(i => i.FileExists(TestFile));
         }
 
         [Test]
-        public void move()
+        public void move_file()
         {
-            IO.Move(TestFile, "b");
+            IO.MoveFile(TestFile, "b");
 
-            ioWrapper.Verify(i => i.Move(TestFile, "b", true));
+            ioWrapper.Verify(i => i.MoveFile(TestFile, "b", false));
         }
 
         [Test]
@@ -173,6 +175,62 @@ namespace Compost.Tests.InputOutput
             IO.ReadAllText(TestFile);
 
             ioWrapper.Verify(i => i.ReadAllText(TestFile));
+        }
+
+        [Test]
+        public void create_directory()
+        {
+            IO.CreateDirectory(TestDir);
+
+            ioWrapper.Verify(i => i.CreateDirectory(TestDir));
+        }
+
+        [Test]
+        public void delete_directory()
+        {
+            IO.DeleteDirectory(TestDir);
+
+            ioWrapper.Verify(i => i.DeleteDirectory(TestDir, true));
+        }
+
+        [Test]
+        public void directory_exists()
+        {
+            IO.DirectoryExists(TestDir);
+
+            ioWrapper.Verify(i => i.DirectoryExists(TestDir));
+        }
+
+        [Test]
+        public void get_current_directory()
+        {
+            IO.GetCurrentDirectory();
+
+            ioWrapper.Verify(i => i.GetCurrentDirectory());
+        }
+
+        [Test]
+        public void get_directories()
+        {
+            IO.GetDirectories(TestDir);
+
+            ioWrapper.Verify(i => i.GetDirectories(TestDir, "*", SearchOption.TopDirectoryOnly));
+        }
+
+        [Test]
+        public void get_files()
+        {
+            IO.GetFiles(TestDir);
+
+            ioWrapper.Verify(i => i.GetFiles(TestDir, "*", SearchOption.TopDirectoryOnly));
+        }
+
+        [Test]
+        public void move_directory()
+        {
+            IO.MoveDirectory(TestDir, "b");
+
+            ioWrapper.Verify(i => i.MoveDirectory(TestDir, "b", false));
         }
     }
 }

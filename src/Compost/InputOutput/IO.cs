@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Compost.Reflection;
 
@@ -125,9 +126,9 @@ namespace Compost.InputOutput
         ///     Deletes the specified file.
         /// </summary>
         /// <param name="filePath"></param>
-        public static void Delete(string filePath)
+        public static void DeleteFile(string filePath)
         {
-            Wrapper.Delete(filePath);
+            Wrapper.DeleteFile(filePath);
         }
 
         /// <summary>
@@ -135,9 +136,9 @@ namespace Compost.InputOutput
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static bool Exists(string filePath)
+        public static bool FileExists(string filePath)
         {
-            return Wrapper.Exists(filePath);
+            return Wrapper.FileExists(filePath);
         }
 
         /// <summary>
@@ -146,9 +147,9 @@ namespace Compost.InputOutput
         /// <param name="sourceFilePath"></param>
         /// <param name="destFilePath"></param>
         /// <param name="overwrite"></param>
-        public static void Move(string sourceFilePath, string destFilePath, bool overwrite = true)
+        public static void MoveFile(string sourceFilePath, string destFilePath, bool overwrite = false)
         {
-            Wrapper.Move(sourceFilePath, destFilePath, overwrite);
+            Wrapper.MoveFile(sourceFilePath, destFilePath, overwrite);
         }
 
         /// <summary>
@@ -212,6 +213,86 @@ namespace Compost.InputOutput
         public static void WriteAllText(string filePath, string text)
         {
             Wrapper.WriteAllText(filePath, text);
+        }
+
+        /// <summary>
+        ///     Creates all directories and subdirectories in the specified <paramref name="directoryPath" />.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        public static void CreateDirectory(string directoryPath)
+        {
+            Wrapper.CreateDirectory(directoryPath);
+        }
+
+        /// <summary>
+        ///     Deletes the specified <paramref name="directoryPath" />. If <paramref name="recursive" /> is true, all
+        ///     subdirectories and files in the <paramref name="directoryPath" /> will also be deleted.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="recursive"></param>
+        public static void DeleteDirectory(string directoryPath, bool recursive = true)
+        {
+            Wrapper.DeleteDirectory(directoryPath, recursive);
+        }
+
+        /// <summary>
+        ///     Determines whether the specified directory exists.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <returns></returns>
+        public static bool DirectoryExists(string directoryPath)
+        {
+            return Wrapper.DirectoryExists(directoryPath);
+        }
+
+        /// <summary>
+        ///     Gets the current working directory of the application.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetCurrentDirectory()
+        {
+            return Wrapper.GetCurrentDirectory();
+        }
+
+        /// <summary>
+        ///     Gets the paths of subdirectories within the <paramref name="directoryPath" /> that match the provided
+        ///     <paramref name="searchPattern" />. The <paramref name="searchOption" /> allows for searching the top direcotry only
+        ///     or all subdirectories.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="searchPattern"></param>
+        /// <param name="searchOption"></param>
+        /// <returns></returns>
+        public static string[] GetDirectories(string directoryPath, string searchPattern = "*",
+            SearchOption searchOption = SearchOption.TopDirectoryOnly)
+        {
+            return Wrapper.GetDirectories(directoryPath, searchPattern, searchOption);
+        }
+
+        /// <summary>
+        ///     Gets the paths of files within the <paramref name="directoryPath" /> that match the provided
+        ///     <paramref name="searchPattern" />. The <paramref name="searchOption" /> allows for searching the top direcotry only
+        ///     or all subdirectories.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="searchPattern"></param>
+        /// <param name="searchOption"></param>
+        /// <returns></returns>
+        public static string[] GetFiles(string directoryPath, string searchPattern = "*",
+            SearchOption searchOption = SearchOption.TopDirectoryOnly)
+        {
+            return Wrapper.GetFiles(directoryPath, searchPattern, searchOption);
+        }
+
+        /// <summary>
+        ///     Moves the directory to a new location.
+        /// </summary>
+        /// <param name="sourcePath"></param>
+        /// <param name="destPath"></param>
+        /// <param name="overwrite"></param>
+        public static void MoveDirectory(string sourcePath, string destPath, bool overwrite = false)
+        {
+            Wrapper.MoveDirectory(sourcePath, destPath, overwrite);
         }
     }
 }
