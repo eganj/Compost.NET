@@ -7,11 +7,7 @@ gulp.task('changelog', function() {
   
   try {
 	  fs.unlinkSync('./CHANGELOG.md'); //deletes existing file if exists to avoid pre-pending
-  } catch(e){}
-  
-  // write version to a separate file for the next step for publishing to GitHub.
-  // this makes it easier to read the value into the batch file.
-  fs.writeFileSync('./release_version.txt', pkg.NuGetVersion);
+  } catch(e){}   
   
   return changelog({
     repository: 'https://github.com/eganj/Compost.NET',
