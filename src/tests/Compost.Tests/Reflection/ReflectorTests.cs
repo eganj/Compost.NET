@@ -121,6 +121,20 @@ namespace Compost.Tests.Reflection
                 Assert.That(Reflector.MethodName((TestClassAlpha testClass) => testClass.DoSomething()),
                     Is.EqualTo("DoSomething"));
             }
+
+            [Test]
+            public void get_enum_values_returns_all_values()
+            {
+                var vals = Reflector.GetEnumValues<TestEnum>();
+
+                Assert.That(vals.Length, Is.EqualTo(6));
+                Assert.That(vals, Contains.Item(TestEnum.An));
+                Assert.That(vals, Contains.Item(TestEnum.O));
+                Assert.That(vals, Contains.Item(TestEnum.This));
+                Assert.That(vals, Contains.Item(TestEnum.Neighbor));
+                Assert.That(vals, Contains.Item(TestEnum.Howdy));
+                Assert.That(vals, Contains.Item(TestEnum.Is));
+            }
         }
 
         private class TestClassAlpha
@@ -133,6 +147,16 @@ namespace Compost.Tests.Reflection
             {
                 return -1;
             }
+        }
+
+        private enum TestEnum
+        {
+            Howdy,
+            Neighbor,
+            This,
+            Is,
+            An,
+            O
         }
     }
 }

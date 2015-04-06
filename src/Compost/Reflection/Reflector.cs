@@ -6,6 +6,11 @@ namespace Compost.Reflection
 {
     public static class Reflector
     {
+        public static T[] GetEnumValues<T>()
+        {
+            return (T[]) Enum.GetValues(typeof (T));
+        }
+
         public static MemberInfo MemberInfo<TType, TReturn>(Expression<Func<TType, TReturn>> expression)
         {
             return GetMemberInfo(expression);
