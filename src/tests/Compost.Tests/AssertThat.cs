@@ -9,6 +9,7 @@ namespace Compost.Tests
         {
             var e = Assert.Throws<T>(code);
             Console.WriteLine("Exception was thrown as expected. Exception message: " + e.Message);
+            Console.WriteLine(" ");
         }
     }
 }

@@ -44,8 +44,13 @@
     <Compile Include="Contracts\Argument.cs" />
     <Compile Include="Contracts\Ensure.cs" />
     <Compile Include="Contracts\EnsureException.cs" />
+    <Compile Include="InputOutput\DirectoryWrapper.cs" />
+    <Compile Include="InputOutput\FileWrapper.cs" />
+    <Compile Include="InputOutput\IDirectory.cs" />
+    <Compile Include="InputOutput\IFile.cs" />
     <Compile Include="InputOutput\IO.cs" />
-    <Compile Include="InputOutput\IOWrapper.cs" />
+    <Compile Include="InputOutput\IPath.cs" />
+    <Compile Include="InputOutput\PathWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\Reflector.cs" />
   </ItemGroup>
