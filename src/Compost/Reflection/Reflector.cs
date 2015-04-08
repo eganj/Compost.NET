@@ -6,6 +6,24 @@ namespace Compost.Reflection
 {
     public static class Reflector
     {
+        public static FieldInfo FieldInfo<TReturn>(Expression<Func<TReturn>> expression)
+        {
+            var fieldInfo = MemberInfo(expression) as FieldInfo;
+            if (fieldInfo == null)
+                throw new NotAFieldException(expression);
+
+            return fieldInfo;
+        }
+
+        public static FieldInfo FieldInfo<TType, TReturn>(Expression<Func<TType, TReturn>> expression)
+        {
+            var fieldInfo = MemberInfo(expression) as FieldInfo;
+            if (fieldInfo == null)
+                throw new NotAFieldException(expression);
+
+            return fieldInfo;
+        }
+
         public static T[] GetEnumValues<T>()
         {
             return (T[]) Enum.GetValues(typeof (T));
@@ -71,6 +89,24 @@ namespace Compost.Reflection
             return MethodInfo(expression).Name;
         }
 
+        public static PropertyInfo PropertyInfo<TReturn>(Expression<Func<TReturn>> expression)
+        {
+            var propertyInfo = MemberInfo(expression) as PropertyInfo;
+            if (propertyInfo == null)
+                throw new NotAPropertyException(expression);
+
+            return propertyInfo;
+        }
+
+        public static PropertyInfo PropertyInfo<TType, TReturn>(Expression<Func<TType, TReturn>> expression)
+        {
+            var propertyInfo = MemberInfo(expression) as PropertyInfo;
+            if (propertyInfo == null)
+                throw new NotAPropertyException(expression);
+
+            return propertyInfo;
+        }
+
         private static MemberInfo GetMemberInfo<TDelegat>(Expression<TDelegat> expression)
         {
             var memberExpression = expression.Body as MemberExpression;
@@ -121,5 +157,29 @@ namespace Compost.Reflection
         public NotAMethodException(string message) : base(message) {}
 
         public NotAMethodException(string message, Exception innerException) : base(message, innerException) {}
+    }
+
+    public class NotAPropertyException : Exception
+    {
+        public NotAPropertyException() {}
+
+        public NotAPropertyException(string message) : base(message) {}
+
+        public NotAPropertyException(string message, Exception innerException) : base(message, innerException) {}
+
+        public NotAPropertyException(Expression expression)
+            : base("The supplied expression is not a property: " + expression) {}
+    }
+
+    public class NotAFieldException : Exception
+    {
+        public NotAFieldException() {}
+
+        public NotAFieldException(string message) : base(message) {}
+
+        public NotAFieldException(string message, Exception innerException) : base(message, innerException) {}
+
+        public NotAFieldException(Expression expression)
+            : base("The supplied expression is not a field: " + expression) {}
     }
 }

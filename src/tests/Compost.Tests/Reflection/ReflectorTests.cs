@@ -1,4 +1,5 @@
-﻿using Compost.Reflection;
+﻿using System.Globalization;
+using Compost.Reflection;
 using NUnit.Framework;
 
 namespace Compost.Tests.Reflection
@@ -67,6 +68,33 @@ namespace Compost.Tests.Reflection
                 Assert.That(Reflector.MethodName(() => TestClass.ReturnSomething()), Is.EqualTo("ReturnSomething"));
                 Assert.That(Reflector.MethodName(() => TestClass.DoSomething()), Is.EqualTo("DoSomething"));
             }
+
+            [Test]
+            public void property_info_returns_info()
+            {
+                Assert.AreEqual(typeof (string), Reflector.PropertyInfo(() => TestClass.SomeProperty).PropertyType);
+            }
+
+            [Test]
+            public void property_info_throws_if_not_a_property()
+            {
+                var testing = (1 + 2).ToString(CultureInfo.InvariantCulture);
+
+                AssertThat.ExceptionIsThrown<NotAPropertyException>(() => Reflector.PropertyInfo(() => TestClass.SomeField));
+                AssertThat.ExceptionIsThrown<NotAPropertyException>(() => Reflector.PropertyInfo(() => testing));
+            }
+
+            [Test]
+            public void field_info_returns_info()
+            {
+                Assert.AreEqual(typeof (int), Reflector.FieldInfo(() => TestClass.SomeField).FieldType);
+            }
+
+            [Test]
+            public void field_info_throws_if_not_a_field()
+            {
+                AssertThat.ExceptionIsThrown<NotAFieldException>(() => Reflector.FieldInfo(() => TestClass.SomeProperty));
+            }
         }
 
         [TestFixture]
@@ -134,6 +162,36 @@ namespace Compost.Tests.Reflection
                 Assert.That(vals, Contains.Item(TestEnum.Neighbor));
                 Assert.That(vals, Contains.Item(TestEnum.Howdy));
                 Assert.That(vals, Contains.Item(TestEnum.Is));
+            }
+
+            [Test]
+            public void property_info_returns_info()
+            {
+                Assert.AreEqual(typeof (string), Reflector.PropertyInfo((TestClassAlpha testClass) => testClass.SomeProperty).PropertyType);
+            }
+
+            [Test]
+            public void property_info_throws_if_not_a_property()
+            {
+                var testing = (1 + 2).ToString(CultureInfo.InvariantCulture);
+
+                AssertThat.ExceptionIsThrown<NotAPropertyException>(
+                    () => Reflector.PropertyInfo((TestClassAlpha testClass) => testClass.SomeField));
+                AssertThat.ExceptionIsThrown<NotAPropertyException>(
+                    () => Reflector.PropertyInfo((TestClassAlpha testClass) => testing));
+            }
+
+            [Test]
+            public void field_info_returns_info()
+            {
+                Assert.AreEqual(typeof (int), Reflector.FieldInfo((TestClassAlpha testClass) => testClass.SomeField).FieldType);
+            }
+
+            [Test]
+            public void field_info_throws_if_not_a_field()
+            {
+                AssertThat.ExceptionIsThrown<NotAFieldException>(
+                    () => Reflector.FieldInfo((TestClassAlpha testClass) => testClass.SomeProperty));
             }
         }
 
