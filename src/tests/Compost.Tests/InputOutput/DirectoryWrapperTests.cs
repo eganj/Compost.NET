@@ -27,7 +27,7 @@ namespace Compost.Tests.InputOutput
         }
 
         [Test]
-        public void delete_directory_should_delete_an_emepty_directory()
+        public void delete_directory_should_delete_an_empty_directory()
         {
             Directory.CreateDirectory(TestDir);
             Assert.IsTrue(Directory.Exists(TestDir));
@@ -158,6 +158,7 @@ namespace Compost.Tests.InputOutput
             Directory.CreateDirectory(destPath);
 
             AssertThat.ExceptionIsThrown<IOException>(() => directoryWrapper.Move(TestDir, destPath));
+            AssertThat.ExceptionIsThrown<IOException>(() => directoryWrapper.Move(TestDir, destPath, false));
         }
 
         [Test]

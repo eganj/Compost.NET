@@ -89,6 +89,25 @@ namespace Compost.Tests.InputOutput
         }
 
         [Test]
+        public void copy_throws_if_file_exists_and_overwrite_option_is_not_provided()
+        {
+            File.AppendAllText(DestFile, "asdf");
+
+            AssertThat.ExceptionIsThrown<IOException>(() => ioWrapper.Copy(TestFile, DestFile));
+            AssertThat.ExceptionIsThrown<IOException>(() => ioWrapper.Copy(TestFile, DestFile, false));
+        }
+
+        [Test]
+        public void copy_can_overwrite()
+        {
+            File.AppendAllText(DestFile, "asdf");
+
+            ioWrapper.Copy(TestFile, DestFile, true);
+
+            Assert.IsTrue(File.Exists(DestFile));
+        }
+
+        [Test]
         public void delete()
         {
             ioWrapper.Delete(TestFile);
@@ -130,6 +149,7 @@ namespace Compost.Tests.InputOutput
             File.WriteAllText(DestFile, "asdf");
 
             AssertThat.ExceptionIsThrown<IOException>(() => ioWrapper.Move(TestFile, DestFile));
+            AssertThat.ExceptionIsThrown<IOException>(() => ioWrapper.Move(TestFile, DestFile, false));
         }
 
         [Test]

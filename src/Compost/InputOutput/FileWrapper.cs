@@ -34,11 +34,19 @@ namespace Compost.InputOutput
         /// </summary>
         /// <param name="sourceFilePath"></param>
         /// <param name="destFilePath"></param>
-        /// <param name="overwrite"></param>
-        public void Copy(string sourceFilePath, string destFilePath, bool overwrite = true)
+        public void Copy(string sourceFilePath, string destFilePath)
         {
-            // TODO - for all methods that are providing default values, create overloads instead. This makes testing easier.
-            // TODO - Break apart IIOWrapper into IPath, IFile, and IDirectory. Implement using PathWrapper, FileWrapper, and DirectoryWrapper
+            File.Copy(sourceFilePath, destFilePath);
+        }
+
+        /// <summary>
+        ///     Copies an existing file to a new file.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
+        /// <param name="overwrite"></param>
+        public void Copy(string sourceFilePath, string destFilePath, bool overwrite)
+        {
             File.Copy(sourceFilePath, destFilePath, overwrite);
         }
 
@@ -66,8 +74,19 @@ namespace Compost.InputOutput
         /// </summary>
         /// <param name="sourceFilePath"></param>
         /// <param name="destFilePath"></param>
+        public void Move(string sourceFilePath, string destFilePath)
+        {
+            File.Copy(sourceFilePath, destFilePath);
+            File.Delete(sourceFilePath);
+        }
+
+        /// <summary>
+        ///     Move a file to a new location.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
         /// <param name="overwrite"></param>
-        public void Move(string sourceFilePath, string destFilePath, bool overwrite = false)
+        public void Move(string sourceFilePath, string destFilePath, bool overwrite)
         {
             File.Copy(sourceFilePath, destFilePath, overwrite);
             File.Delete(sourceFilePath);

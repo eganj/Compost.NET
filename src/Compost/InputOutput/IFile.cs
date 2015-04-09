@@ -27,8 +27,15 @@ namespace Compost.InputOutput
         /// </summary>
         /// <param name="sourceFilePath"></param>
         /// <param name="destFilePath"></param>
+        void Copy(string sourceFilePath, string destFilePath);
+
+        /// <summary>
+        ///     Copies an existing file to a new file.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
         /// <param name="overwrite"></param>
-        void Copy(string sourceFilePath, string destFilePath, bool overwrite = true);
+        void Copy(string sourceFilePath, string destFilePath, bool overwrite);
 
         /// <summary>
         ///     Deletes the specified file.
@@ -48,8 +55,15 @@ namespace Compost.InputOutput
         /// </summary>
         /// <param name="sourceFilePath"></param>
         /// <param name="destFilePath"></param>
+        void Move(string sourceFilePath, string destFilePath);
+
+        /// <summary>
+        ///     Move a file to a new location.
+        /// </summary>
+        /// <param name="sourceFilePath"></param>
+        /// <param name="destFilePath"></param>
         /// <param name="overwrite"></param>
-        void Move(string sourceFilePath, string destFilePath, bool overwrite = false);
+        void Move(string sourceFilePath, string destFilePath, bool overwrite);
 
         /// <summary>
         ///     Reads the bytes from a file.

@@ -14,12 +14,19 @@ namespace Compost.InputOutput
         void Create(string directoryPath);
 
         /// <summary>
-        ///     Deletes the specified <paramref name="directoryPath" />. If <paramref name="recursive" /> is true, all
-        ///     subdirectories and files in the <paramref name="directoryPath" /> will also be deleted.
+        ///     Deletes the specified <paramref name="directoryPath" /> including and all
+        ///     subdirectories and files contained in the <paramref name="directoryPath" />.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        void Delete(string directoryPath);
+
+        /// <summary>
+        ///     Deletes the specified <paramref name="directoryPath" />. If <paramref name="recursive" /> is false, the directory
+        ///     will not be deleted recursively and an exception will be thrown if the directory is not empty.
         /// </summary>
         /// <param name="directoryPath"></param>
         /// <param name="recursive"></param>
-        void Delete(string directoryPath, bool recursive = true);
+        void Delete(string directoryPath, bool recursive);
 
         /// <summary>
         ///     Determines whether the specified directory exists.
@@ -35,6 +42,22 @@ namespace Compost.InputOutput
         string GetCurrentDirectory();
 
         /// <summary>
+        ///     Gets the paths of all the subdirectories within the <paramref name="directoryPath" />.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <returns></returns>
+        string[] GetDirectories(string directoryPath);
+
+        /// <summary>
+        ///     Gets the paths of subdirectories within the <paramref name="directoryPath" /> that match the provided
+        ///     <paramref name="searchPattern" />.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="searchPattern"></param>
+        /// <returns></returns>
+        string[] GetDirectories(string directoryPath, string searchPattern);
+
+        /// <summary>
         ///     Gets the paths of subdirectories within the <paramref name="directoryPath" /> that match the provided
         ///     <paramref name="searchPattern" />. The <paramref name="searchOption" /> allows for searching the top direcotry only
         ///     or all subdirectories.
@@ -43,8 +66,23 @@ namespace Compost.InputOutput
         /// <param name="searchPattern"></param>
         /// <param name="searchOption"></param>
         /// <returns></returns>
-        string[] GetDirectories(string directoryPath, string searchPattern = "*",
-            SearchOption searchOption = SearchOption.TopDirectoryOnly);
+        string[] GetDirectories(string directoryPath, string searchPattern, SearchOption searchOption);
+
+        /// <summary>
+        ///     Gets the paths of all files within the <paramref name="directoryPath" />.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <returns></returns>
+        string[] GetFiles(string directoryPath);
+
+        /// <summary>
+        ///     Gets the paths of files within the <paramref name="directoryPath" /> that match the provided
+        ///     <paramref name="searchPattern" />.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="searchPattern"></param>
+        /// <returns></returns>
+        string[] GetFiles(string directoryPath, string searchPattern);
 
         /// <summary>
         ///     Gets the paths of files within the <paramref name="directoryPath" /> that match the provided
@@ -55,7 +93,14 @@ namespace Compost.InputOutput
         /// <param name="searchPattern"></param>
         /// <param name="searchOption"></param>
         /// <returns></returns>
-        string[] GetFiles(string directoryPath, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly);
+        string[] GetFiles(string directoryPath, string searchPattern, SearchOption searchOption);
+
+        /// <summary>
+        ///     Moves the directory to a new location.
+        /// </summary>
+        /// <param name="sourcePath"></param>
+        /// <param name="destPath"></param>
+        void Move(string sourcePath, string destPath);
 
         /// <summary>
         ///     Moves the directory to a new location.
@@ -63,6 +108,6 @@ namespace Compost.InputOutput
         /// <param name="sourcePath"></param>
         /// <param name="destPath"></param>
         /// <param name="overwrite"></param>
-        void Move(string sourcePath, string destPath, bool overwrite = false);
+        void Move(string sourcePath, string destPath, bool overwrite);
     }
 }

@@ -16,7 +16,6 @@ namespace Compost.InputOutput
         /// <summary>
         ///     A statically available implementation of <seealso cref="IPath" />.
         /// </summary>
-        /// <exception cref="NullReferenceException"></exception>
         public static IPath Path
         {
             get { return path ?? Throw(() => Path); }
@@ -26,7 +25,6 @@ namespace Compost.InputOutput
         /// <summary>
         ///     A statically available implementation of <seealso cref="IFile" />.
         /// </summary>
-        /// <exception cref="NullReferenceException"></exception>
         public static IFile File
         {
             get { return file ?? Throw(() => File); }
@@ -36,7 +34,6 @@ namespace Compost.InputOutput
         /// <summary>
         ///     A statically available implementation of <seealso cref="IDirectory" />.
         /// </summary>
-        /// <exception cref="NullReferenceException"></exception>
         public static IDirectory Directory
         {
             get { return directory ?? Throw(() => Directory); }
