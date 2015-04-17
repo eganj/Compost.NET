@@ -52,6 +52,11 @@
     <Compile Include="InputOutput\IPath.cs" />
     <Compile Include="InputOutput\PathWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomUtils\IRandomNumber.cs" />
+    <Compile Include="RandomUtils\IRandomString.cs" />
+    <Compile Include="RandomUtils\Rand.cs" />
+    <Compile Include="RandomUtils\RandomNumber.cs" />
+    <Compile Include="RandomUtils\RandomString.cs" />
     <Compile Include="Reflection\Reflector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
