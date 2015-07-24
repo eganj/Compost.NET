@@ -42,6 +42,7 @@ namespace Compost.Contracts
         ///     <seealso cref="ArgumentException" /> is thrown.
         /// </summary>
         /// <param name="arg"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public static void CannotBeNullOrEmpty(string arg)
         {
@@ -57,6 +58,7 @@ namespace Compost.Contracts
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="argumentName"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public static void CannotBeNullOrEmpty(string arg, string argumentName)
         {
@@ -71,6 +73,7 @@ namespace Compost.Contracts
         ///     <seealso cref="ArgumentException" /> is thrown.
         /// </summary>
         /// <param name="arg"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public static void CannotBeNullOrWhiteSpace(string arg)
         {
@@ -86,12 +89,13 @@ namespace Compost.Contracts
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="argumentName"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public static void CannotBeNullOrWhiteSpace(string arg, string argumentName)
         {
             CannotBeNull(arg, argumentName);
             if (string.IsNullOrWhiteSpace(arg))
-                throw new ArgumentException("Argument cannot be empty or white space!");
+                throw new ArgumentException("Argument cannot be empty or white space!", argumentName);
         }
 
         /// <summary>
@@ -101,6 +105,7 @@ namespace Compost.Contracts
         /// </summary>
         /// <param name="arg"></param>
         /// <typeparam name="T"></typeparam>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public static void CannotBeNullOrEmpty<T>(ICollection<T> arg)
         {
@@ -117,6 +122,7 @@ namespace Compost.Contracts
         /// <param name="arg"></param>
         /// <param name="argumentName"></param>
         /// <typeparam name="T"></typeparam>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public static void CannotBeNullOrEmpty<T>(ICollection<T> arg, string argumentName)
         {
