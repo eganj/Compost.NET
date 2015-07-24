@@ -43,7 +43,7 @@ namespace Compost.Tests.RandomUtils
         }
 
         [Test]
-        public void int_throws_if_max_is_greater_than_min()
+        public void int_throws_if_min_is_greater_than_max()
         {
             AssertThat.ExceptionIsThrown<ArgumentOutOfRangeException>(() => randomNumber.Int(1234, 8));
         }
@@ -75,7 +75,7 @@ namespace Compost.Tests.RandomUtils
         }
 
         [Test]
-        public void double_throws_if_max_is_greater_than_min()
+        public void double_throws_if_min_is_greater_than_max()
         {
             AssertThat.ExceptionIsThrown<ArgumentOutOfRangeException>(() => randomNumber.Double(1234, 8));
         }
@@ -89,7 +89,7 @@ namespace Compost.Tests.RandomUtils
             Repeat(() => Assert.That(r1.Int(), Is.EqualTo(r2.Int())));
         }
 
-        private void Repeat(Action action, int repetitions = 100)
+        private static void Repeat(Action action, int repetitions = 100)
         {
             var c = 0;
             while (c++ < repetitions)
