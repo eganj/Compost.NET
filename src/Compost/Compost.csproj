@@ -44,7 +44,8 @@
     <Compile Include="Contracts\Argument.cs" />
     <Compile Include="Contracts\Ensure.cs" />
     <Compile Include="Contracts\EnsureException.cs" />
-    <Compile Include="Generics\Op.cs" />
+    <Compile Include="Generics\IOperators.cs" />
+    <Compile Include="Generics\Operators.cs" />
     <Compile Include="InputOutput\DirectoryWrapper.cs" />
     <Compile Include="InputOutput\FileWrapper.cs" />
     <Compile Include="InputOutput\IDirectory.cs" />
