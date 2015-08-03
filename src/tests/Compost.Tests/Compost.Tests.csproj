@@ -48,6 +48,7 @@
     <Compile Include="AssertThat.cs" />
     <Compile Include="Contracts\ArgumentTests.cs" />
     <Compile Include="Contracts\EnsureTests.cs" />
+    <Compile Include="Generics\OpTests.cs" />
     <Compile Include="InputOutput\FileWrapperTests.cs" />
     <Compile Include="InputOutput\IOTests.cs" />
     <Compile Include="InputOutput\DirectoryWrapperTests.cs" />
@@ -71,6 +72,7 @@
       <Name>Compost</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

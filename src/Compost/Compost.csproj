@@ -44,6 +44,7 @@
     <Compile Include="Contracts\Argument.cs" />
     <Compile Include="Contracts\Ensure.cs" />
     <Compile Include="Contracts\EnsureException.cs" />
+    <Compile Include="Generics\Op.cs" />
     <Compile Include="InputOutput\DirectoryWrapper.cs" />
     <Compile Include="InputOutput\FileWrapper.cs" />
     <Compile Include="InputOutput\IDirectory.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="RandomUtils\RandomString.cs" />
     <Compile Include="Reflection\Reflector.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
